@@ -3,6 +3,7 @@ package com.example.RekotlinLoginApp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast
 import com.example.RekotlinLoginApp.actions.LoginAction
 import com.example.RekotlinLoginApp.reducers.loginReducer
 import com.example.RekotlinLoginApp.state.AppState
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import tw.geothings.rekotlin.Store
 import tw.geothings.rekotlin.StoreSubscriber
 import java.util.*
+
 
 
 // The global application store, which is responsible for managing the appliction state.
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity(), StoreSubscriber<AppState>{
            startActivity(successIntent)
         } else{
             println("authenticated:false")
+            Toast.makeText(this@MainActivity, "Invalid user login:" +state.authenticationState.userName, Toast.LENGTH_LONG).show()
         }
 
     }
